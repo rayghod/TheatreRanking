@@ -1,0 +1,25 @@
+<h1>Magazyny</h1>
+
+
+
+
+
+
+<% if can? :create, Item %>
+ <p>
+  <%= link_to 'New Item', new_item_path, :class =>"btn btn-default" %>
+ <p> 
+<% end %>
+<%= will_paginate @item %>
+      <% @item.each do |item| %>
+        <%= render "item_row", item: item, order_item: @order_item %>
+      <% end %>
+
+
+ 
+<p>
+<div class="col-md-12">
+
+
+
+</div>

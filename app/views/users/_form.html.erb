@@ -1,0 +1,62 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+    <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, placeholder: "Zostaw puste, jeśli bez zmian" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :imię_i_nazwisko %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ulica %><br />
+    <%= f.text_field :street, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Numer_domu %><br />
+    <%= f.text_field :housenumber, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Numer_mieszkania %><br />
+    <%= f.text_field :apartmentnumber, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :miasto %><br />
+    <%= f.text_field :city, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kod_pocztowy %><br />
+    <%= f.text_field :zipcode, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Zarejestruj się", :class=>"" %>
+  </div>
+
+  <%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: true}) %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

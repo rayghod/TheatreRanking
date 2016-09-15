@@ -1,0 +1,59 @@
+<h2>Zarejestruj się</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hasło %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Potwierdź_hasło %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :imię_i_nazwisko %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ulica %><br />
+    <%= f.text_field :street, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Numer_domu %><br />
+    <%= f.text_field :housenumber, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Numer_mieszkania %><br />
+    <%= f.text_field :apartmentnumber, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :miasto %><br />
+    <%= f.text_field :city, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kod_pocztowy %><br />
+    <%= f.text_field :zipcode, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Zarejestruj się", :class=>"" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

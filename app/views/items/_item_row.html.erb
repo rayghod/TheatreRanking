@@ -1,0 +1,23 @@
+<div>
+  <%= link_to item.name, item %>
+  <%= image_tag(item.photo_url, :width => 100) if item.photo.present? %> 
+
+
+
+
+Średnia ocena: 
+
+<%=
+(Rate.where(:rateable_id =>  item.id.to_i).sum(:stars)/Rate.where(:rateable_id =>  item.id.to_i).count).round(2)
+
+%>    
+    <% if user_signed_in? %>
+
+
+<% if current_user.role_id == 1 || 2 %>
+  <%= link_to 'Edit', edit_item_path(@item) %> 
+<% end %> 
+    
+      <% end %>
+</div>
+
