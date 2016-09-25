@@ -20,3 +20,27 @@
 .first-container{
 	padding-top: 50px;
 }
+
+.play_poster{
+	width:100px;
+	height:150px;
+	display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: -1;
+}
+
+.play_title{
+	text-align: center;
+}
+
+.play_avg_rating_img{
+	text-align: center;
+	background-image: url('../uploads/item/photo/big-star.png');
+	background-repeat: no-repeat;	
+	background-position: center;
+	height: 80px;
+	padding-top:29px;
+	z-index:2;
+	margin-top:-57px;
+}

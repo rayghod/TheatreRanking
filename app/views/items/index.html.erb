@@ -9,14 +9,17 @@
 
 
 <%= form_tag(items_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search items" %>
-<%= submit_tag "Search" %>
+<%= text_field_tag :search, params[:search],  placeholder: "Znajdź sztukę", class:"form-control col-md-4" %>
+<%= submit_tag "Szukaj", class:"btn btn-default" %>
 <% end %>
 
 <% if (@items.present?) &&  (params.has_key?(:search))%>
 	<% @items.each do |item| %>
         <%= render "item_row", item: item %>
-    <% end %>
+     <% end %>
+     <div class="col-md-12">
+    	<%= will_paginate @items, renderer: BootstrapPagination::Rails %>
+    </div> 
 <% elsif (params.has_key?(:search)) %>
 	<p>Niestety taka sztuka nie znajduje się w naszej bazie danych <%= params[:search] %>.</p>
 <% end %>
@@ -24,11 +27,8 @@
 <% @items.each do |item| %>
 	<%= render "item_row", item: item %>
 <% end %>
-<%= will_paginate @items, renderer: BootstrapPagination::Rails %>
- 
-<p>
+
 <div class="col-md-12">
-
-
-
-</div>
+<%= will_paginate @items, renderer: BootstrapPagination::Rails %>
+</div> 
+<p>

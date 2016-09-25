@@ -8,9 +8,9 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     if params[:search]
-      @items = Item.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+      @items = Item.paginate(page: params[:page], per_page: 6).search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 6)
     else
-      @items = Item.all.paginate(page: params[:page], per_page: 5)
+      @items = Item.all.paginate(page: params[:page], per_page: 6)
     end
 
   end

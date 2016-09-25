@@ -5,9 +5,9 @@ class TheatresController < ApplicationController
   # GET /theatres.json
   def index
     if params[:search]
-      @theatres = Theatre.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+      @theatres = Theatre.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 6)
     else
-      @theatres = Theatre.all.order(:name).paginate(page: params[:page], per_page: 5)
+      @theatres = Theatre.all.order(:name).paginate(page: params[:page], per_page: 6)
     end
   end
 

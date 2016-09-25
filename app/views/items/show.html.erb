@@ -1,37 +1,35 @@
+<div class="col-md-8">
+  <h3 class="play_title"><%= link_to @item.name, @item %> (<%= @item.date%>)</h3>
+
+
 <p>
-
-
 	<% if user_signed_in? %>
     	Ocena uzytkownika: <%= rating_for_user @item, current_user, 'speed', star: 10 %>
 	<% else %>
-		<%=
-			(Rate.where(:rateable_id =>  item.id.to_i).sum(:stars)/Rate.where(:rateable_id =>  item.id.to_i).count).round(2)
-		%>
+		<div class="play_avg_rating_img">
+  			<%=
+			(Rate.where(:rateable_id =>  @item.id.to_i).sum(:stars)/Rate.where(:rateable_id =>  @item.id.to_i).count).round(2)
+			%>  
+		</div> 
 	<% end %>
 </p>
 
 
-<p>
-	<strong>Nazwa:</strong>
-  	<%= @item.name %>
-</p>
 		
 <p>
 	<strong>Teatr:</strong>
 	<%= link_to Theatre.where(id: @item.theatre_id).take.name, theatre_path(Theatre.where(id: @item.theatre_id).take.id) %>
-
-</p
+</p>
 
 
 
 <p>
-  <strong>Opis:</strong>
-  <%= @item.description %>
+	<strong>Opis:</strong>
+	<%= @item.description %>
 </p>
 
 <p>
-  <strong>Zdjęcie:</strong>
-  <%= image_tag(@item.photo_url, :width => 300) if @item.photo.present? %>
+	<%= image_tag(@item.photo_url, :width => 300) if @item.photo.present? %>
 </p>
 
 

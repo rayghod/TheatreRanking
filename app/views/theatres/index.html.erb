@@ -9,43 +9,30 @@
 
 
 <%= form_tag(theatres_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search theatres" %>
-<%= submit_tag "Search" %>
+<%= text_field_tag :search, params[:search], placeholder: "Znajdź teatr", class:"form-control col-md-4"  %>
+<%= submit_tag "Szukaj", class:"btn btn-default" %>
 <% end %>
 
 
 <% if (@theatres.present?) &&  (params.has_key?(:search))%>
-  <%= render @theatres %>
+  <% @theatres.each do |theatre| %>
+        <%= render "theatre", theatre: theatre %>
+     <% end %>
+     <div class="col-md-12">
+      <%= will_paginate @theatres, renderer: BootstrapPagination::Rails %>
+    </div> 
 <% elsif (params.has_key?(:search)) %>
-  <p>There are no theatres containing the term(s) <%= params[:search] %>.</p>
+  <p>Niestety taka sztuka nie znajduje się w naszej bazie danych <%= params[:search] %>.</p>
 <% end %>
 
 
-<%= will_paginate @theatres %>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @theatres.each do |theatre| %>
+        <%= render "theatre", theatre: theatre %>
+     <% end %>
+     <div class="col-md-12">
+      <%= will_paginate @theatres, renderer: BootstrapPagination::Rails %>
+    </div> 
 
-
-  <tbody>
-      <% @theatres.each do |theatre| %>
-      <tr>
-        <td><%= theatre.name %></td>
-        <td><%= theatre.description %></td>
-<% if current_user.role_id == 1 || 2 %>
-  <td> <%= link_to 'Edytuj', edit_item_path(theatre) %></td> 
-  <td><%= link_to 'Usuń', theatre, method: :delete, data: { confirm: 'Jesteś pewien?' } %></td>
-<% end %> 
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 
