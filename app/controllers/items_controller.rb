@@ -2,11 +2,16 @@ class ItemsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
   autocomplete :item, :name, :full => true
   load_and_authorize_resource
+  autocomplete :item, :name, :full => true
 
   # GET /items
   # GET /items.json
   def index
-    @item = Item.all.paginate(page: params[:page], per_page: 5)
+    if params[:search]
+      @items = Item.search(params[:search]).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    else
+      @items = Item.all.paginate(page: params[:page], per_page: 5)
+    end
 
   end
 

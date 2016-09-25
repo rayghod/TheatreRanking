@@ -21,8 +21,14 @@
 </div>
 <div class="form-group">
   <div class="field">
-    <%= f.label :numer %><br>
-    <%= f.text_area :number, :class =>"form-control"%>
+    <%= f.label :rok %><br>
+    <%= f.number_field :date, :class =>"form-control"%>
+  </div>
+</div>
+<div class="form-group">
+  <div class="field">
+    <%= f.label :opis %><br>
+    <%= f.text_area :description, :class =>"form-control"%>
   </div>
 </div>
 <div class="form-group">
@@ -31,11 +37,7 @@
     <%= f.file_field :photo%>
   </div>
 </div>
-<div class="form-group">
-  <div class="field">
-    <%= f.label :cena %><br>
-    <%= f.text_field :price, :class =>"form-control" %>
-  </div>
+
 </div>
 <div class="form-group">
   <div class="actions">

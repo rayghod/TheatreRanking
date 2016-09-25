@@ -1,18 +1,32 @@
 <p>
 
 
-<% if user_signed_in? %>
-     Ocena uzytkownika: <%= rating_for_user @item, current_user, 'speed', star: 10 %>
-
-<% end %>
-
-  <strong>Nazwa:</strong>
-  <%= @item.name %>
+	<% if user_signed_in? %>
+    	Ocena uzytkownika: <%= rating_for_user @item, current_user, 'speed', star: 10 %>
+	<% else %>
+		<%=
+			(Rate.where(:rateable_id =>  item.id.to_i).sum(:stars)/Rate.where(:rateable_id =>  item.id.to_i).count).round(2)
+		%>
+	<% end %>
 </p>
 
+
 <p>
-  <strong>Numer:</strong>
-  <%= @item.number %>
+	<strong>Nazwa:</strong>
+  	<%= @item.name %>
+</p>
+		
+<p>
+	<strong>Teatr:</strong>
+	<%= link_to Theatre.where(id: @item.theatre_id).take.name, theatre_path(Theatre.where(id: @item.theatre_id).take.id) %>
+
+</p
+
+
+
+<p>
+  <strong>Opis:</strong>
+  <%= @item.description %>
 </p>
 
 <p>
@@ -20,15 +34,11 @@
   <%= image_tag(@item.photo_url, :width => 300) if @item.photo.present? %>
 </p>
 
-<p>
-  <strong>Cena:</strong>
-  <%= @item.price %>
-</p>
 
 
 <% if (user_signed_in?) && (current_user.role_id == 1 || 2) %>
-	<%= link_to 'Edit', edit_item_path(@item) %> |
+	<%= link_to 'Edytuj', edit_item_path(@item) %> |
 <% end %>	
 
 
-<%= link_to 'Back', items_path %>
+<%= link_to 'Cofnij', items_path %>

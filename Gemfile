@@ -49,7 +49,9 @@ gem 'rails-jquery-autocomplete'
 
 gem 'cancancan', '~> 1.10'
 gem 'carrierwave'
-gem 'bootstrap-sass', '~> 3.3.3'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+gem 'jquery-ui-rails'
 
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'

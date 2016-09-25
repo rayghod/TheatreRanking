@@ -1,5 +1,11 @@
+<h1>Teatry</h1>
 
 
+<% if can? :create, Theatre %>
+  <p>
+      <%= link_to 'Dodaj teatr', new_item_path, :class =>"btn btn-default" %>
+  </p> 
+<% end %>
 
 
 <%= form_tag(theatres_path, :method => "get", id: "search-form") do %>
@@ -14,9 +20,6 @@
   <p>There are no theatres containing the term(s) <%= params[:search] %>.</p>
 <% end %>
 
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Theatres</h1>
 
 <%= will_paginate @theatres %>
 <table>
@@ -34,9 +37,11 @@
       <tr>
         <td><%= theatre.name %></td>
         <td><%= theatre.description %></td>
-        <td><%= link_to 'Show', theatre %></td>
-        <td><%= link_to 'Edit', edit_theatre_path(theatre) %></td>
-        <td><%= link_to 'Destroy', theatre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% if current_user.role_id == 1 || 2 %>
+  <td> <%= link_to 'Edytuj', edit_item_path(theatre) %></td> 
+  <td><%= link_to 'Usuń', theatre, method: :delete, data: { confirm: 'Jesteś pewien?' } %></td>
+<% end %> 
+        
       </tr>
     <% end %>
   </tbody>

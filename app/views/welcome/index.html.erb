@@ -1,2 +1,20 @@
-<h1> STRONA GŁÓWNA</h1>
-<h2>TU BĘDZIE WYSZUKIWARKA/LISTA SZTUK</h2>
+
+<div class="jumbotron">
+      <div class="container">
+        <h1>Sztukomierz!</h1>
+        <h3>Oceń sztukę!</h3>
+        <p>W  internecie istnieją serwisy umożliwiające ocenę większości dzieł sztuki. Lietratura ma portal <a href="http://lubimyczytac.pl/">Lubimy czytać</a>, Muzyka <a href="http://www.allmusic.com/">All Music</a>, co do Filmu, wymieniając tylko kilka <a href="http://www.imdb.com/">Internet Movie Databse</a> czy polski <a href="www.filmweb.pl">Filmweb</a>. 
+
+        <p>W tym całym gąszczu ciężko jednak stronę poświęconą ocenie sztuk teatralnych. Przez specyficzny rodzaj przekazu, przywiązanie do miejsca, Sztuki Teatralne nie doczekały się dedykowanego dla nich portalu z możliwością oceny przez użytkowników. Stając przed końcem tych mojego toku nauczania zdecydowałem się choć trochę naprawić ten błąd.
+
+               <p><a class="btn btn-primary btn-lg" href="#" role="button"> Więcej »</a></p>
+      </div>
+    </div>
+
+Znajdź swoją sztukę:
+
+<%= form_tag(items_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Znajdź sztukę", class:"form-control" %>
+<%= submit_tag "Szukaj", class:"btn btn-default" %>
+<% end %>
+

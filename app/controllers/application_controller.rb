@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
   helper_method :current_order, :current_userid
+  layout "application"
+
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied!"
@@ -33,5 +35,8 @@ class ApplicationController < ActionController::Base
   devise_parameter_sanitizer.permit(:sign_up, keys: [:zipcode])
   devise_parameter_sanitizer.permit(:account_update, keys: [:zipcode])
   end
+
+
+
 
 end
